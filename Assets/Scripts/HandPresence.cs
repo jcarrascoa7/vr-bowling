@@ -6,13 +6,20 @@ using UnityEngine.XR;
 public class HandPresence : MonoBehaviour
 {
 
+    // VARIABLES // 
+
+
+    // True if the oculus controller prefab is currently present.
+    private bool showController = true;
     // Variable con las caracteristicas de los dispositivos a escuchar. No se instancia mediante codigo, sino que en unity.
     public InputDeviceCharacteristics controllerCharacteristics;
-
     // Lista de todos los prefabs de manos. No se instancian mediante código, sino que se agregan en unity.
     public List<GameObject> controllerPrefabs;
     private InputDevice targetDevice;
+    public GameObject handModelPrefab;
     private GameObject spawnedController;
+    private GameObject spawnedHandModel;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +34,7 @@ public class HandPresence : MonoBehaviour
 
         foreach (var item in devices)
         {
-            Debug.Log(item.name + item.characteristics);
+            Debug.Log("Reconocido:" + item.name + item.characteristics);
         }
 
         // Buscamos el dispositivo con los características indicadas
@@ -39,11 +46,13 @@ public class HandPresence : MonoBehaviour
             if (prefab)
             {
                 spawnedController = Instantiate(prefab, transform);
+                spawnedHandModel = Instantiate(handModelPrefab, transform);
+                spawnedHandModel.SetActive(false);
             }
             else
             {
                 Debug.LogError("No se encontró el prefab para el dispositivo " + targetDevice.name);
-                spawnedController = Instantiate(controllerPrefabs[0], transform);
+                // spawnedController = Instantiate(controllerPrefabs[0], transform);
             }
         }
     }
@@ -53,17 +62,28 @@ public class HandPresence : MonoBehaviour
     {
         if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue)
         {
-            Debug.Log("Primary button pressed");
-        }
-
-        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.1f)
-        {
-            Debug.Log("Trigger value: " + triggerValue);
-        }
-
-        if (targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 primary2DAxisValue) && primary2DAxisValue != Vector2.zero)
-        {
-            Debug.Log("Primary 2D axis value: " + primary2DAxisValue);
+            if (showController)
+            {
+                Debug.Log("Boton primario pulsado");
+                Debug.Log("Oculus ocultados, mostrando manos");
+                spawnedHandModel.SetActive(true);
+                Debug.Log("spawnedHandModel status: " + spawnedHandModel.activeSelf);
+                spawnedController.SetActive(false);
+                Debug.Log("spawnedController status: " + spawnedController.activeSelf);
+                showController = false;
+                Debug.Log("showController boolean status: " + showController);
+            }
+            else
+            {
+                Debug.Log("Boton primario pulsado");
+                Debug.Log("Manos ocultadas, mostrando oculus");
+                spawnedController.SetActive(true);
+                Debug.Log("spawnedController status: " + spawnedController.activeSelf);
+                spawnedHandModel.SetActive(false);
+                Debug.Log("spawnedHandModel status: " + spawnedHandModel.activeSelf);
+                showController = true;
+                Debug.Log("showController boolean status: " + showController);
+            }
         }
     }
 }
