@@ -8,7 +8,6 @@ public class HandPresence : MonoBehaviour
 
     // VARIABLES // 
 
-
     // True if the oculus controller prefab is currently present.
     private bool showController = true;
     // Variable con las caracteristicas de los dispositivos a escuchar. No se instancia mediante codigo, sino que en unity.
@@ -19,6 +18,7 @@ public class HandPresence : MonoBehaviour
     public GameObject handModelPrefab;
     private GameObject spawnedController;
     private GameObject spawnedHandModel;
+    private Animator handAnimator;
 
 
     // Start is called before the first frame update
@@ -32,11 +32,6 @@ public class HandPresence : MonoBehaviour
         // Obtenemos el dispositivo que cumpla con los requisitos y los insertamos en la lista
         InputDevices.GetDevicesWithCharacteristics(controllerCharacteristics, devices);
 
-        foreach (var item in devices)
-        {
-            Debug.Log("Reconocido:" + item.name + item.characteristics);
-        }
-
         // Buscamos el dispositivo con los características indicadas
         if (devices.Count > 0)
         {
@@ -47,6 +42,7 @@ public class HandPresence : MonoBehaviour
             {
                 spawnedController = Instantiate(prefab, transform);
                 spawnedHandModel = Instantiate(handModelPrefab, transform);
+                handAnimator = spawnedHandModel.GetComponent<Animator>();
                 spawnedHandModel.SetActive(false);
             }
             else
@@ -57,6 +53,26 @@ public class HandPresence : MonoBehaviour
         }
     }
 
+void UpdateHandAnimation()
+{
+    if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
+    {
+        handAnimator.SetFloat("Trigger", triggerValue);
+    }
+    else
+    {
+        handAnimator.SetFloat("Trigger", 0);
+    }
+
+    if (targetDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue))
+    {
+        handAnimator.SetFloat("Grip", gripValue);
+    }
+    else
+    {
+        handAnimator.SetFloat("Grip", 0);
+    }
+}
     // Update is called once per frame
     void Update()
     {
@@ -64,26 +80,21 @@ public class HandPresence : MonoBehaviour
         {
             if (showController)
             {
-                Debug.Log("Boton primario pulsado");
-                Debug.Log("Oculus ocultados, mostrando manos");
-                spawnedHandModel.SetActive(true);
-                Debug.Log("spawnedHandModel status: " + spawnedHandModel.activeSelf);
                 spawnedController.SetActive(false);
-                Debug.Log("spawnedController status: " + spawnedController.activeSelf);
+                spawnedHandModel.SetActive(true);
                 showController = false;
-                Debug.Log("showController boolean status: " + showController);
             }
             else
             {
-                Debug.Log("Boton primario pulsado");
-                Debug.Log("Manos ocultadas, mostrando oculus");
                 spawnedController.SetActive(true);
-                Debug.Log("spawnedController status: " + spawnedController.activeSelf);
                 spawnedHandModel.SetActive(false);
-                Debug.Log("spawnedHandModel status: " + spawnedHandModel.activeSelf);
                 showController = true;
-                Debug.Log("showController boolean status: " + showController);
             }
+        }
+
+        if (showController == false)
+        {
+            UpdateHandAnimation();
         }
     }
 }
