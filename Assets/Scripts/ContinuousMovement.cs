@@ -7,6 +7,9 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
+// Instanciamos Unity.CoreUtils para poder usar el objeto XROrigin en lugar del antiguo XRRig
+using Unity.XR.CoreUtils;
+
 public class ContinuousMovement : MonoBehaviour
 {
 
@@ -22,11 +25,17 @@ public class ContinuousMovement : MonoBehaviour
     // Velocidad de movimiento
     public float speed = 1.0f;
 
+    // Instanciamos el XRORigin para rotarlo dependiendo de la direccion donde apunta la cabeza del jugador
+    private XROrigin origin;
+
     // Start is called before the first frame update
     void Start()
     {
         // Obtenemos el componente CharacterController del objeto
         character = GetComponent<CharacterController>();
+
+        // Obtenemos el componente XRRig del objeto
+        origin = GetComponent<XROrigin>();
     }
 
     // Update is called once per frame
@@ -43,7 +52,10 @@ public class ContinuousMovement : MonoBehaviour
     // se actualizará cada vez que unity actualice las físicas del juego.
     private void FixedUpdate()
     {
-        Vector3 direction = new Vector3(inputAxis.x, 0, inputAxis.y);
+        Quaternion headYaw = Quaternion.Euler(0, origin.Camera.transform.eulerAngles.y, 0);
+        Debug.Log("headYaw " + headYaw);
+        Vector3 direction = headYaw * new Vector3(inputAxis.x, 0, inputAxis.y);
+        Debug.Log("direction " + direction);
         character.Move(direction * Time.fixedDeltaTime * speed);
     }
 }
