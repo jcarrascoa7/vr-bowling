@@ -102,6 +102,26 @@ MonoBehaviour:
   required: 0
   cacheSize: 1048576
   perThreadCacheSize: 51200
+--- !u!114 &-6564030340887635411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fe570546b5b2046873e03d7b882369, type: 3}
+  m_Name: MeshingTeapotFeature WSA
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Sample: Meshing Teapot'
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.example.meshing
+  openxrExtensionStrings: 
+  company: Unity
+  priority: 0
+  required: 0
 --- !u!114 &-6448248082925449411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +139,7 @@ MonoBehaviour:
   - {fileID: 7228998263931620253}
   - {fileID: -7959185541860017211}
   - {fileID: -1038140010877369727}
-  - {fileID: 3605167589570804818}
+  - {fileID: -6564030340887635411}
   - {fileID: -4643428323442980196}
   - {fileID: -7961032153595845247}
   - {fileID: 5842830076678747160}
@@ -187,6 +207,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &-4584043093498915694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fe570546b5b2046873e03d7b882369, type: 3}
+  m_Name: MeshingTeapotFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Sample: Meshing Teapot'
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.example.meshing
+  openxrExtensionStrings: 
+  company: Unity
+  priority: 0
+  required: 0
 --- !u!114 &-4138141971561050750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +243,7 @@ MonoBehaviour:
   - {fileID: -8794810917524033068}
   - {fileID: -156287082305374330}
   - {fileID: 6768554575934012638}
-  - {fileID: 5767361378824573845}
+  - {fileID: -4584043093498915694}
   - {fileID: 909376817912512441}
   - {fileID: -2775183838999411361}
   - {fileID: -4766326999581147746}
@@ -241,6 +281,26 @@ MonoBehaviour:
   nameUi: Valve Index Controller Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.valveindex
+  openxrExtensionStrings: 
+  company: Unity
+  priority: 0
+  required: 0
+--- !u!114 &-3126987667033283793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fe570546b5b2046873e03d7b882369, type: 3}
+  m_Name: MeshingTeapotFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 'Sample: Meshing Teapot'
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.example.meshing
   openxrExtensionStrings: 
   company: Unity
   priority: 0
@@ -343,7 +403,7 @@ MonoBehaviour:
   - {fileID: -2538753228826320632}
   - {fileID: 4024734173352761108}
   - {fileID: -5340715554973735166}
-  - {fileID: 8030636913849563932}
+  - {fileID: -3126987667033283793}
   - {fileID: 1316252600630674349}
   - {fileID: 6953403288413368351}
   - {fileID: -511733171478939432}
