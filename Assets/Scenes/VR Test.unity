@@ -245,7 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 45266581}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MovementZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,6 +512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DownRamp
       objectReference: {fileID: 0}
+    - target: {fileID: 49538590990498892, guid: 231da32c87e7b4042b624e2beaabe34a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1571026225891941393, guid: 231da32c87e7b4042b624e2beaabe34a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -585,6 +589,10 @@ PrefabInstance:
     - target: {fileID: 49538590990498892, guid: 231da32c87e7b4042b624e2beaabe34a, type: 3}
       propertyPath: m_Name
       value: Stair (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 49538590990498892, guid: 231da32c87e7b4042b624e2beaabe34a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1571026225891941393, guid: 231da32c87e7b4042b624e2beaabe34a, type: 3}
       propertyPath: m_RootOrder
@@ -6020,6 +6028,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stair
       objectReference: {fileID: 0}
+    - target: {fileID: 49538590990498892, guid: 231da32c87e7b4042b624e2beaabe34a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1571026225891941393, guid: 231da32c87e7b4042b624e2beaabe34a, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -6207,6 +6219,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: White Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 9015328064521279305, guid: 146e7ba115c9e0b49814fd9f30a3678e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9015328064521279309, guid: 146e7ba115c9e0b49814fd9f30a3678e, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -6283,7 +6299,7 @@ GameObject:
   - component: {fileID: 1004616746}
   - component: {fileID: 1004616745}
   - component: {fileID: 1004616749}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bowling Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7316,7 +7332,7 @@ GameObject:
   - component: {fileID: 1246649634}
   - component: {fileID: 1246649633}
   - component: {fileID: 1246649636}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8183,6 +8199,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputSource: 4
   speed: 1
+  gravity: -9.81
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!143 &1484572170
 CharacterController:
   m_ObjectHideFlags: 0
@@ -8258,6 +8278,10 @@ PrefabInstance:
     - target: {fileID: 49538590990498892, guid: 231da32c87e7b4042b624e2beaabe34a, type: 3}
       propertyPath: m_Name
       value: Stair (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 49538590990498892, guid: 231da32c87e7b4042b624e2beaabe34a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1571026225891941393, guid: 231da32c87e7b4042b624e2beaabe34a, type: 3}
       propertyPath: m_RootOrder
@@ -9415,6 +9439,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light Blue Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 6454610267227610884, guid: bf14f2691f18f7d42aaafcd7ecdc9b30, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6454610267227610887, guid: bf14f2691f18f7d42aaafcd7ecdc9b30, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -9487,6 +9515,10 @@ PrefabInstance:
     - target: {fileID: 3266939903379002592, guid: f3831ba333aeb674b9a421d5dac835bb, type: 3}
       propertyPath: m_Name
       value: White Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 3266939903379002592, guid: f3831ba333aeb674b9a421d5dac835bb, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3939339516890957253, guid: f3831ba333aeb674b9a421d5dac835bb, type: 3}
       propertyPath: m_RootOrder
@@ -9569,6 +9601,10 @@ PrefabInstance:
     - target: {fileID: 9015328064521279305, guid: 146e7ba115c9e0b49814fd9f30a3678e, type: 3}
       propertyPath: m_Name
       value: White Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015328064521279305, guid: 146e7ba115c9e0b49814fd9f30a3678e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9015328064521279309, guid: 146e7ba115c9e0b49814fd9f30a3678e, type: 3}
       propertyPath: m_RootOrder

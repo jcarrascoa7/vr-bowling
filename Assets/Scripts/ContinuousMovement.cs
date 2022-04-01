@@ -22,11 +22,17 @@ public class ContinuousMovement : MonoBehaviour
     // Controlador del jugador.
     private CharacterController character;
 
-    // Velocidad de movimiento
+    // Variables físicas
     public float speed = 1.0f;
+    public float gravity = -9.81f;
+
+    private float fallingSpeed;
 
     // Instanciamos el XRORigin para rotarlo dependiendo de la direccion donde apunta la cabeza del jugador
     private XROrigin origin;
+
+    // Layer que tendra contacto con el rayCast
+    public LayerMask groundLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -53,9 +59,39 @@ public class ContinuousMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Quaternion headYaw = Quaternion.Euler(0, origin.Camera.transform.eulerAngles.y, 0);
-        Debug.Log("headYaw " + headYaw);
+        // Debug.Log("headYaw " + headYaw);
         Vector3 direction = headYaw * new Vector3(inputAxis.x, 0, inputAxis.y);
-        Debug.Log("direction " + direction);
+        // Debug.Log("direction " + direction);
         character.Move(direction * Time.fixedDeltaTime * speed);
+
+        // Si el jugador está cayendo, aplicamos una velocidad de caída
+        bool isGrounded = CheckIfGrounded();
+        
+        if (isGrounded)
+        {
+            fallingSpeed = 0;
+        }
+        else
+        {
+            fallingSpeed += gravity * Time.fixedDeltaTime;
+        }
+
+        character.Move(Vector3.up * fallingSpeed * Time.fixedDeltaTime);
     }
+
+    // Función que comprueba si el jugador está en el suelo
+    // Se usa un SphereCast en vez de un RayCast ya que con el RayCast el jugador tendra menos colisiones y puede caerse en las orillas.
+
+    bool CheckIfGrounded()
+    {
+        // Rayo que va desde el centro del collider del jugador hasta el suelo
+        Vector3 rayStart = transform.TransformPoint(character.center);
+        // Debug.Log("rayStart " + rayStart);
+        float rayLength = character.center.y + 0.01f;
+        // Debug.Log("rayLength " + rayLength);
+
+        bool hasHit = Physics.SphereCast(rayStart, character.radius, Vector3.down, out RaycastHit hitInfo, rayLength, groundLayer);
+        return hasHit;
+    }
+
 }
