@@ -13,6 +13,9 @@ using Unity.XR.CoreUtils;
 public class ContinuousMovement : MonoBehaviour
 {
 
+    // Declaramos la variable float que representa el offset extra en la altura de la camara
+    public float additionalHeight = 0.2f;
+
     // Declaramos la variable del input que queremos usar. Se selecciona en Unity
     public XRNode inputSource;
 
@@ -58,6 +61,8 @@ public class ContinuousMovement : MonoBehaviour
     // se actualizará cada vez que unity actualice las físicas del juego.
     private void FixedUpdate()
     {
+        CapsuleFollowHeadset();
+
         Quaternion headYaw = Quaternion.Euler(0, origin.Camera.transform.eulerAngles.y, 0);
         // Debug.Log("headYaw " + headYaw);
         Vector3 direction = headYaw * new Vector3(inputAxis.x, 0, inputAxis.y);
@@ -78,6 +83,20 @@ public class ContinuousMovement : MonoBehaviour
 
         character.Move(Vector3.up * fallingSpeed * Time.fixedDeltaTime);
     }
+
+    // Funcion que hace que el collider del jugador siga el headset
+    void CapsuleFollowHeadset()
+    {
+        // Definimos la altura TOTAL del collider como la altura del headset + el offset extra
+        character.height = origin.CameraInOriginSpaceHeight + additionalHeight;
+
+        // Creamos un vector3 a partir de la posicion del headset, pasando la posicion real a una virtual
+        Vector3 capsuleCenter = transform.InverseTransformPoint(origin.Camera.transform.position);
+        // Debug.Log("capsuleCenter " + capsuleCenter);
+
+        character.center = new Vector3(capsuleCenter.x, (character.height / 2) + character.skinWidth, capsuleCenter.z);
+    }
+
 
     // Función que comprueba si el jugador está en el suelo
     // Se usa un SphereCast en vez de un RayCast ya que con el RayCast el jugador tendra menos colisiones y puede caerse en las orillas.

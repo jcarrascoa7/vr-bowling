@@ -8197,12 +8197,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882ab870e3e9eac48882be2b843f1959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  additionalHeight: 0.2
   inputSource: 4
   speed: 1
   gravity: -9.81
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!143 &1484572170
 CharacterController:
   m_ObjectHideFlags: 0
